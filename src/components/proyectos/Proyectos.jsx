@@ -1,6 +1,15 @@
+import { Sidebar } from "../layout/Sidebar";
+
 export const Proyectos = () => {
     return ( 
-        <h1>Desde proyectos</h1>
+        <div className="contenedor-app">
+            <Sidebar />
+            <div className="seccion-principal">
+                <main>
+                    <div className="contenedor-tareas"></div>
+                </main>
+            </div>
+        </div>
      );
 }
  
