@@ -8,7 +8,7 @@ export const Sidebar = () =>{
             <h1>MERN<span>Tasks</span></h1>
             <NuevoProyecto />
             <div className="proyectos">
-                <h2>Tus proyectos</h2>
+                <h2>Tus proyectos a</h2>
             </div>
         </aside>
     )
