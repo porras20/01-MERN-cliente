@@ -1,5 +1,7 @@
 import { useState } from "react"
+import { ListadoProyectos } from "../proyectos/Listado"
 import { NuevoProyecto } from "../proyectos/NuevoProyecto"
+
 
 export const Sidebar = () =>{
 
@@ -9,6 +11,7 @@ export const Sidebar = () =>{
             <NuevoProyecto />
             <div className="proyectos">
                 <h2>Tus proyectos a</h2>
+                <ListadoProyectos />
             </div>
         </aside>
     )
