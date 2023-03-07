@@ -1,5 +1,7 @@
 import { useState } from "react"
+import { ListadoProyectos } from "../proyectos/ListadoProyectos"
 import { NuevoProyecto } from "../proyectos/NuevoProyecto"
+
 
 export const Sidebar = () =>{
 
@@ -8,7 +10,8 @@ export const Sidebar = () =>{
             <h1>MERN<span>Tasks</span></h1>
             <NuevoProyecto />
             <div className="proyectos">
-                <h2>Tus proyectos</h2>
+                <h2>Tus proyectos a</h2>
+                <ListadoProyectos />
             </div>
         </aside>
     )
