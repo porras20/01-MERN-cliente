@@ -3,7 +3,8 @@ import { FORMULARIO_PROYECTO,
         OBTENER_PROYECTOS, 
         AGREGAR_PROYECTO, 
         VALIDAR_FORMULARIO,
-        PROYECTO_ACTUAL } from "../../types";
+        PROYECTO_ACTUAL,
+        ELIMINAR_PROYECTO } from "../../types";
 import { proyectoContext } from "./proyectoContext";
 import proyectoReducer from "./proyectoReducer";
 import { v4 as uuidv4 } from 'uuid';
@@ -69,6 +70,14 @@ export const ProyectoState = props =>{
         })
     }
 
+    //Elimina un proyecto
+    const eliminarProyecto = proyectoId =>{
+        dispatch({
+            type: ELIMINAR_PROYECTO,
+            payload: proyectoId
+        })
+    }
+
     return (
         <proyectoContext.Provider 
         value={{proyectos: state.proyectos,
@@ -78,6 +87,7 @@ export const ProyectoState = props =>{
         mostrarFormulario,
         obtenerProyectos,
         agregarProyecto,
+        eliminarProyecto,
         mostrarError,
         proyectoActual
         }}>
