@@ -12,9 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const ProyectoState = props =>{
 
     const proyectos = [
-        { id: 1, nombre: 'Tienda virtual'},
-        { id: 2, nombre: 'Intranet'},
-        { id: 3, nombre: 'Diseño de sitio web'}
+        
     ]
 
     const initialState = {

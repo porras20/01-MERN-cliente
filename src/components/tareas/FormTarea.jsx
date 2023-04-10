@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { proyectoContext } from "../../context/proyectos/proyectoContext";
 import TareaContex from "../../context/tareas/tareaContext";
 
@@ -9,8 +9,21 @@ export const FormTarea = () => {
     const {proyecto} = proyectosContext;
     
     const tareasContext = useContext(TareaContex);
-    const { agregarTarea } = tareasContext;
+    const { tareaSeleccionada, agregarTarea, validarTarea, errortarea, obtenerTareas,
+        actualizarTarea } = tareasContext;
 
+
+    useEffect(() => {
+      if (tareaSeleccionada!== null) {
+        setTarea(tareaSeleccionada);
+      }
+      else{
+        setTarea({
+            nombre: ''
+        })
+      }
+    }, [tareaSeleccionada]);
+    
     // state del formulario
     const [tarea, setTarea] = useState({
         nombre: '',
@@ -34,13 +47,26 @@ export const FormTarea = () => {
     const onSubmit = e => {
         e.preventDefault();
         //Validar 
+        if (nombre.trim() === '') {
+            validarTarea();
+            return;
+        }
 
-        //pasar la validacion
+        if (tareaSeleccionada === null) {
+            //Agregar la nueva tarea al state de tareas
+            tarea.proyectoId = proyectoActual.id
+            tarea.estado = false;
+            agregarTarea(tarea);
+        }
+        else{
+            actualizarTarea(tarea);
+        }
+        
+        obtenerTareas(proyectoActual.id);
 
-        //Agregar la nueva tarea al state de tareas
-        tarea.proyectoId = proyectoActual.id
-        tarea.estado = false;
-        agregarTarea(tarea);
+        setTarea({
+            nombre: ''
+        })
     }
 
 
@@ -61,10 +87,13 @@ export const FormTarea = () => {
                     <input 
                         type="submit" 
                         className="btn btn-primario btn-submit btn-block"
-                        value="Agregar tarea"
+                        value={tareaSeleccionada ? 'Editar tarea' : 'Guardar tarea'}
                         />
                 </div>
             </form>
+            {
+                errortarea ? <p className="mensaje error">El nombre de la tarea es obligatorio</p>  : null
+            }
         </div>
      );
 }
